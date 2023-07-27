@@ -36,13 +36,13 @@ Airplane plane = new Airplane(camera);
 
 // _3dSharp.Panel panel = new _3dSharp.Panel(new Point3d(1000,10000,-1000), new Point3d(-1000,10000,1000));
 
-Cube cube = new Cube(new Point3d(9000, -1000, -1000), new Point3d(11000, 1000, 1000));
-Cube cube2 = new Cube(new Point3d(12000, -1000, 2000), new Point3d(14000, 1000, 4000));
-Cube cube3 = new Cube(new Point3d(12000, -1000, -2000), new Point3d(14000, 1000, -4000));
-Cube cube4 = new Cube(new Point3d(6000, -1000, 2000), new Point3d(8000, 1000, 4000));
-Cube cube5 = new Cube(new Point3d(6000, -1000, -2000), new Point3d(8000, 1000, -4000));
+Cube cube = new Cube(new Point3d(9500, -500, -500), new Point3d(10500, 500, 500));
+Cube cube2 = new Cube(new Point3d(12500, -500, 2500), new Point3d(13500, 500, 3500));
+Cube cube3 = new Cube(new Point3d(12500, -500, -2500), new Point3d(13500, 500, -3500));
+Cube cube4 = new Cube(new Point3d(6000, -500, 2500), new Point3d(8000, 500, 3500));
+Cube cube5 = new Cube(new Point3d(6000, -500, -2500), new Point3d(8000, 500, -3500));
 
-Cube cube6 = new Cube(new Point3d(-1000, 9000, -1000), new Point3d(1000, 11000, 1000));
+Cube cube6 = new Cube(new Point3d(-500, 9500, -500), new Point3d(500, 10500, 500));
 
 tm.Tick += delegate
 {
@@ -100,9 +100,9 @@ form.KeyDown += (s, e) =>
         plane.Move(0, true);
     if (e.KeyCode == Keys.Down)
         plane.Move(1, true);
-    if (e.KeyCode == Keys.Left)
-        plane.Move(2, true);
     if (e.KeyCode == Keys.Right)
+        plane.Move(2, true);
+    if (e.KeyCode == Keys.Left)
         plane.Move(3, true);
     if (e.KeyCode == Keys.S)
         plane.Move(4, true);
@@ -122,9 +122,9 @@ form.KeyUp += (s, e) =>
         plane.Move(0, false);
     if (e.KeyCode == Keys.Down)
         plane.Move(1, false);
-    if (e.KeyCode == Keys.Left)
-        plane.Move(2, false);
     if (e.KeyCode == Keys.Right)
+        plane.Move(2, false);
+    if (e.KeyCode == Keys.Left)
         plane.Move(3, false);
     if (e.KeyCode == Keys.S)
         plane.Move(4, false);

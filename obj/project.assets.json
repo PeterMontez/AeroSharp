@@ -46,19 +46,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\disrct\\.nuget\\packages\\": {}
+    "C:\\Users\\Aluno\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\disrct\\Desktop\\AeroSharp\\AeroSharp.csproj",
+      "projectUniqueName": "C:\\Users\\Aluno\\Desktop\\AeroSharp\\AeroSharp.csproj",
       "projectName": "AeroSharp",
-      "projectPath": "C:\\Users\\disrct\\Desktop\\AeroSharp\\AeroSharp.csproj",
-      "packagesPath": "C:\\Users\\disrct\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\disrct\\Desktop\\AeroSharp\\obj\\",
+      "projectPath": "C:\\Users\\Aluno\\Desktop\\AeroSharp\\AeroSharp.csproj",
+      "packagesPath": "C:\\Users\\Aluno\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Aluno\\Desktop\\AeroSharp\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\disrct\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Aluno\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -66,17 +71,18 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net7.0-windows7.0": {
           "targetAlias": "net7.0-windows",
           "projectReferences": {
-            "C:\\Users\\disrct\\Desktop\\3dSharp\\3dSharp.csproj": {
-              "projectPath": "C:\\Users\\disrct\\Desktop\\3dSharp\\3dSharp.csproj"
+            "C:\\Users\\Aluno\\Desktop\\3dSharp\\3dSharp.csproj": {
+              "projectPath": "C:\\Users\\Aluno\\Desktop\\3dSharp\\3dSharp.csproj"
             },
-            "C:\\Users\\disrct\\Desktop\\GraviSharp\\GraviSharp.csproj": {
-              "projectPath": "C:\\Users\\disrct\\Desktop\\GraviSharp\\GraviSharp.csproj"
+            "C:\\Users\\Aluno\\Desktop\\GraviSharp\\GraviSharp.csproj": {
+              "projectPath": "C:\\Users\\Aluno\\Desktop\\GraviSharp\\GraviSharp.csproj"
             }
           }
         }
@@ -109,7 +115,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
       }
     }
   }
