@@ -46,6 +46,8 @@ Cube cube6 = new Cube(new Point3d(-1000, 9000, -1000), new Point3d(1000, 11000, 
 
 tm.Tick += delegate
 {
+    plane.Update();
+
     List<Triangle2d> triangles = Scene.BruteRender(camera);
 
     var drawFont = new Font("Arial", 10);
@@ -57,6 +59,8 @@ tm.Tick += delegate
     PointF drawPoint5 = new PointF(150.0F, 250.0F);
     PointF drawPoint6 = new PointF(150.0F, 275.0F);
     PointF drawPoint7 = new PointF(150.0F, 300.0F);
+    PointF drawPoint8 = new PointF(150.0F, 325.0F);
+    PointF drawPoint9 = new PointF(150.0F, 350.0F);
 
     g.Clear(Color.White);
 
@@ -66,6 +70,9 @@ tm.Tick += delegate
     g.DrawString($"Camera position: {camera.Position}", drawFont, Brushes.Black, drawPoint4);
     g.DrawString($"Edge points: P0: ({camera.CameraView.Points[0]}) / P1: ({camera.CameraView.Points[1]})", drawFont, Brushes.Black, drawPoint5);
     g.DrawString($"Edge Points: P2: ({camera.CameraView.Points[2]}) / P3: ({camera.CameraView.Points[3]})", drawFont, Brushes.Black, drawPoint6);
+    g.DrawString($"Speed: {plane.SolidBody.Speed}", drawFont, Brushes.Black, drawPoint7);
+    // g.DrawString($"Edge Points: P2: ({camera.CameraView.Points[2]}) / P3: ({camera.CameraView.Points[3]})", drawFont, Brushes.Black, drawPoint8);
+    
 
     foreach (var triangle in triangles)
     {
@@ -89,30 +96,44 @@ form.KeyDown += (s, e) =>
 {
     if (e.KeyCode == Keys.Escape)
         Application.Exit();
-    if (e.KeyCode == Keys.Left)
-        camera.YawAdd(-1);
-    if (e.KeyCode == Keys.Right)
-        camera.YawAdd(1);
     if (e.KeyCode == Keys.Up)
-        camera.PitchAdd(1);
+        plane.Move(0, true);
     if (e.KeyCode == Keys.Down)
-        camera.PitchAdd(-1);
-    if (e.KeyCode == Keys.M)
-        camera.RollAdd(-1);
-    if (e.KeyCode == Keys.N)
-        camera.RollAdd(1);
-    if (e.KeyCode == Keys.W)
-        camera.Translate(50, 0, 0);
+        plane.Move(1, true);
+    if (e.KeyCode == Keys.Left)
+        plane.Move(2, true);
+    if (e.KeyCode == Keys.Right)
+        plane.Move(3, true);
     if (e.KeyCode == Keys.S)
-        camera.Translate(-50, 0, 0);
+        plane.Move(4, true);
+    if (e.KeyCode == Keys.W)
+        plane.Move(5, true);
     if (e.KeyCode == Keys.A)
-        camera.Translate(0, 0, -50);
+        plane.Move(6, true);
     if (e.KeyCode == Keys.D)
-        camera.Translate(0, 0, 50);
-    if (e.KeyCode == Keys.Z)
-        camera.Translate(0, -50, 0);
-    if (e.KeyCode == Keys.Space)
-        camera.Translate(0, 50, 0);
+        plane.Move(7, true);
+};
+
+form.KeyUp += (s, e) =>
+{
+    if (e.KeyCode == Keys.Escape)
+        Application.Exit();
+    if (e.KeyCode == Keys.Up)
+        plane.Move(0, false);
+    if (e.KeyCode == Keys.Down)
+        plane.Move(1, false);
+    if (e.KeyCode == Keys.Left)
+        plane.Move(2, false);
+    if (e.KeyCode == Keys.Right)
+        plane.Move(3, false);
+    if (e.KeyCode == Keys.S)
+        plane.Move(4, false);
+    if (e.KeyCode == Keys.W)
+        plane.Move(5, false);
+    if (e.KeyCode == Keys.A)
+        plane.Move(6, false);
+    if (e.KeyCode == Keys.D)
+        plane.Move(7, false);
 };
 
 Application.Run(form);
