@@ -5,7 +5,7 @@ using System;
 public class Airplane
 {
     public Camera Camera { get; set; }
-    public SolidBody SolidBody { get; set; } = new SolidBody(new Point3d(0, 0, 0), true, true);
+    public SolidBody SolidBody { get; set; } = new SolidBody(new Point3d(0, 0, 0), true, false);
     public bool[] Moves = new bool[8];
     // thrust, revthrust, Lyaw, Ryaw, Upitch, Dpitch, Lroll, Rroll
 

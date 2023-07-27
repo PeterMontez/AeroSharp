@@ -71,7 +71,7 @@ tm.Tick += delegate
     g.DrawString($"Edge points: P0: ({camera.CameraView.Points[0]}) / P1: ({camera.CameraView.Points[1]})", drawFont, Brushes.Black, drawPoint5);
     g.DrawString($"Edge Points: P2: ({camera.CameraView.Points[2]}) / P3: ({camera.CameraView.Points[3]})", drawFont, Brushes.Black, drawPoint6);
     g.DrawString($"Speed: {plane.SolidBody.Speed}", drawFont, Brushes.Black, drawPoint7);
-    // g.DrawString($"Edge Points: P2: ({camera.CameraView.Points[2]}) / P3: ({camera.CameraView.Points[3]})", drawFont, Brushes.Black, drawPoint8);
+    g.DrawString($"Plane thrust? {plane.Moves[0]}", drawFont, Brushes.Black, drawPoint8);
     
 
     foreach (var triangle in triangles)
@@ -100,9 +100,9 @@ form.KeyDown += (s, e) =>
         plane.Move(0, true);
     if (e.KeyCode == Keys.Down)
         plane.Move(1, true);
-    if (e.KeyCode == Keys.Right)
+    if (e.KeyCode == Keys.E)
         plane.Move(2, true);
-    if (e.KeyCode == Keys.Left)
+    if (e.KeyCode == Keys.Q)
         plane.Move(3, true);
     if (e.KeyCode == Keys.S)
         plane.Move(4, true);
@@ -122,9 +122,9 @@ form.KeyUp += (s, e) =>
         plane.Move(0, false);
     if (e.KeyCode == Keys.Down)
         plane.Move(1, false);
-    if (e.KeyCode == Keys.Right)
+    if (e.KeyCode == Keys.E)
         plane.Move(2, false);
-    if (e.KeyCode == Keys.Left)
+    if (e.KeyCode == Keys.Q)
         plane.Move(3, false);
     if (e.KeyCode == Keys.S)
         plane.Move(4, false);
