@@ -23,7 +23,10 @@ form.Controls.Add(pb);
 var tm = new Timer();
 tm.Interval = 5;
 
+var drawFont = new Font("Arial", 10);
 Pen pen = new Pen(Color.Black);
+SolidBrush solidBrush = new SolidBrush(Color.LightBlue);
+SolidBrush floorBrush = new SolidBrush(Color.Green);
 
 Point3d cameraPos = new Point3d(0, 0, 0);
 double FOV = 800;
@@ -34,15 +37,27 @@ Camera camera = new Camera(cameraPos, FOV, angle, ratio, ratioScale);
 
 Airplane plane = new Airplane(camera);
 
-// _3dSharp.Panel panel = new _3dSharp.Panel(new Point3d(1000,10000,-1000), new Point3d(-1000,10000,1000));
+Random rd = new Random();
 
-Cube cube = new Cube(new Point3d(9500, -500, -500), new Point3d(10500, 500, 500));
-Cube cube2 = new Cube(new Point3d(12500, -500, 2500), new Point3d(13500, 500, 3500));
-Cube cube3 = new Cube(new Point3d(12500, -500, -2500), new Point3d(13500, 500, -3500));
-Cube cube4 = new Cube(new Point3d(6000, -500, 2500), new Point3d(8000, 500, 3500));
-Cube cube5 = new Cube(new Point3d(6000, -500, -2500), new Point3d(8000, 500, -3500));
+for (int i = 1; i < 21; i++)
+{
+    int yBase = rd.Next(-3000, 1500);
+    int zBase = rd.Next(-3000, 1500);
 
-Cube cube6 = new Cube(new Point3d(-500, 9500, -500), new Point3d(500, 10500, 500));
+    // yBase *= 1+(i/10);
+    // zBase *= 1+(i/10);
+
+    Cube P1L = new Cube(new Point3d(i*5000, yBase, zBase), new Point3d((i*5000)+100, yBase+1500, zBase+100));
+    Cube P1R = new Cube(new Point3d(i*5000, yBase, zBase+1500), new Point3d((i*5000)+100, yBase+1500, zBase+1400));
+    Cube P1B = new Cube(new Point3d(i*5000, yBase, zBase), new Point3d((i*5000)+100, yBase+100, zBase+1500));
+    Cube P1T = new Cube(new Point3d(i*5000, yBase+1400, zBase), new Point3d((i*5000)+100, yBase+1500, zBase+1500));
+
+    Floor floor = new Floor(new Point3d((i-1)*5000, -3500, -5000), new Point3d((i*5000)-2500, -3500, 0));
+    Floor floor2 = new Floor(new Point3d((i-1)*5000, -3500, 0), new Point3d((i*5000)-2500, -3500, 5000));
+    Floor floor3 = new Floor(new Point3d(((i-1)*5000)+2500, -3500, -5000), new Point3d(i*5000, -3500, 0));
+    Floor floor4 = new Floor(new Point3d(((i-1)*5000)+2500, -3500, 0), new Point3d(i*5000, -3500, 5000));
+
+}
 
 tm.Tick += delegate
 {
@@ -50,32 +65,18 @@ tm.Tick += delegate
 
     List<Triangle2d> triangles = Scene.BruteRender(camera);
 
-    var drawFont = new Font("Arial", 10);
-
-    PointF drawPoint = new PointF(150.0F, 150.0F);
-    PointF drawPoint2 = new PointF(150.0F, 175.0F);
-    PointF drawPoint3 = new PointF(150.0F, 200.0F);
-    PointF drawPoint4 = new PointF(150.0F, 225.0F);
-    PointF drawPoint5 = new PointF(150.0F, 250.0F);
-    PointF drawPoint6 = new PointF(150.0F, 275.0F);
-    PointF drawPoint7 = new PointF(150.0F, 300.0F);
-    PointF drawPoint8 = new PointF(150.0F, 325.0F);
-    PointF drawPoint9 = new PointF(150.0F, 350.0F);
+    List<Triangle2d> floor = Scene.RenderFloor(camera);
 
     g.Clear(Color.White);
 
-    g.DrawString($"Camera FOV: {camera.CameraView.FOVpoint}", drawFont, Brushes.Black, drawPoint);
-    g.DrawString($"{triangles.Count} Triangles Rendered", drawFont, Brushes.Black, drawPoint2);
-    g.DrawString($"Camera angles: {camera.CameraView.Angle.yaw}, {camera.CameraView.Angle.pitch}, {camera.CameraView.Angle.roll}", drawFont, Brushes.Black, drawPoint3);
-    g.DrawString($"Camera position: {camera.Position}", drawFont, Brushes.Black, drawPoint4);
-    g.DrawString($"Edge points: P0: ({camera.CameraView.Points[0]}) / P1: ({camera.CameraView.Points[1]})", drawFont, Brushes.Black, drawPoint5);
-    g.DrawString($"Edge Points: P2: ({camera.CameraView.Points[2]}) / P3: ({camera.CameraView.Points[3]})", drawFont, Brushes.Black, drawPoint6);
-    g.DrawString($"Speed: {plane.SolidBody.Speed}", drawFont, Brushes.Black, drawPoint7);
-    g.DrawString($"Plane thrust? {plane.Moves[0]}", drawFont, Brushes.Black, drawPoint8);
-    
+    foreach (var triangle in floor)
+    {
+        g.FillPolygon(floorBrush, triangle.points);
+    }
 
     foreach (var triangle in triangles)
     {
+        g.FillPolygon(solidBrush, triangle.points);
         g.DrawPolygon(new Pen(Color.Black), triangle.points);
     }
 

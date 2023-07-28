@@ -5,11 +5,11 @@ using System;
 public class Airplane
 {
     public Camera Camera { get; set; }
-    public SolidBody SolidBody { get; set; } = new SolidBody(new Point3d(0, 0, 0), true, false);
+    public SolidBody SolidBody { get; set; } = new SolidBody(new Point3d(0, 0, 0), true, true);
     public bool[] Moves = new bool[8];
     // thrust, revthrust, Lyaw, Ryaw, Upitch, Dpitch, Lroll, Rroll
 
-    public double Thrust { get; set; } = 10*10;
+    public double Thrust { get; set; } = 10*80;
     public double YawSpeed { get; set; } = (1.0/3.0);
     public double PitchSpeed { get; set; } = (3.0/3.0);
     public double RollSpeed { get; set; } = (5.0/3.0);
